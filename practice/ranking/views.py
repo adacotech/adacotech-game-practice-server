@@ -11,5 +11,6 @@ class UserViewSet(viewsets.ModelViewSet):
 
 class ScoreViewSet(viewsets.ModelViewSet):
     """API endpoint for scores"""
-    queryset = Score.objects.all()
+    queryset = Score.objects.select_related('user').order_by('-score')
+#    queryset = Score.objects.order_by('-score')
     serializer_class = ScoreSerializer
